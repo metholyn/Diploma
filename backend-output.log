@@ -1,0 +1,159 @@
+[INFO] Scanning for projects...
+Downloading from central: https://repo.maven.apache.org/maven2/org/cyclonedx/maven-metadata.xml
+Downloading from central: https://repo.maven.apache.org/maven2/org/springframework/boot/maven-metadata.xml
+Downloading from central: https://repo.maven.apache.org/maven2/org/flywaydb/maven-metadata.xml
+Downloading from central: https://repo.maven.apache.org/maven2/io/github/git-commit-id/maven-metadata.xml
+Progress (1): 255 BProgress (2): 255 B | 234 BProgress (3): 255 B | 234 B | 249 BProgress (4): 255 B | 234 B | 249 B | 243 B                                           Downloaded from central: https://repo.maven.apache.org/maven2/org/flywaydb/maven-metadata.xml (234 B at 428 B/s)
+Downloaded from central: https://repo.maven.apache.org/maven2/io/github/git-commit-id/maven-metadata.xml (255 B at 466 B/s)
+Downloaded from central: https://repo.maven.apache.org/maven2/org/springframework/boot/maven-metadata.xml (249 B at 455 B/s)
+Downloaded from central: https://repo.maven.apache.org/maven2/org/cyclonedx/maven-metadata.xml (243 B at 444 B/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/jooq/maven-metadata.xml
+Downloading from central: https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/maven-metadata.xml
+Downloading from central: https://repo.maven.apache.org/maven2/org/liquibase/maven-metadata.xml
+Downloading from central: https://repo.maven.apache.org/maven2/org/graalvm/buildtools/maven-metadata.xml
+Progress (1): 398 B                   Downloaded from central: https://repo.maven.apache.org/maven2/org/jooq/maven-metadata.xml (398 B at 9.3 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-metadata.xml
+Progress (1): 375 B                   Downloaded from central: https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/maven-metadata.xml (375 B at 6.9 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/mojo/maven-metadata.xml
+Progress (1): 242 BProgress (2): 242 B | 394 B                           Downloaded from central: https://repo.maven.apache.org/maven2/org/liquibase/maven-metadata.xml (394 B at 6.5 kB/s)
+Downloaded from central: https://repo.maven.apache.org/maven2/org/graalvm/buildtools/maven-metadata.xml (242 B at 4.0 kB/s)
+Progress (1): 4.6 kBProgress (1): 9.7 kBProgress (1): 14 kB                    Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-metadata.xml (14 kB at 325 kB/s)
+Progress (1): 3.1 kBProgress (1): 7.7 kBProgress (1): 12 kB Progress (1): 17 kBProgress (1): 20 kBProgress (1): 21 kB                   Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/mojo/maven-metadata.xml (21 kB at 227 kB/s)
+[INFO] 
+[INFO] ------------------------< com.library:backend >-------------------------
+[INFO] Building backend 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:4.0.3:run (default-cli) > test-compile @ backend >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ backend ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ backend ---
+[INFO] Recompiling the module because of added or removed source files.
+[INFO] Compiling 34 source files with javac [debug parameters release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ backend ---
+[INFO] Copying 1 resource from src\test\resources to target\test-classes
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ backend ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 3 source files with javac [debug parameters release 21] to target\test-classes
+[INFO] 
+[INFO] <<< spring-boot:4.0.3:run (default-cli) < test-compile @ backend <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:4.0.3:run (default-cli) @ backend ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.0.3)
+
+2026-03-31T22:28:57.729+02:00  INFO 92520 --- [library-backend] [           main] com.library.BackendApplication           : Starting BackendApplication using Java 21.0.8 with PID 92520 (D:\Projects\Diploma\backend\target\classes started by SWAGA in d:\Projects\Diploma\backend)
+2026-03-31T22:28:57.732+02:00  INFO 92520 --- [library-backend] [           main] com.library.BackendApplication           : No active profile set, falling back to 1 default profile: "default"
+2026-03-31T22:28:58.243+02:00  INFO 92520 --- [library-backend] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-31T22:28:58.313+02:00  INFO 92520 --- [library-backend] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 61 ms. Found 5 JPA repository interfaces.
+2026-03-31T22:28:58.766+02:00  INFO 92520 --- [library-backend] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-03-31T22:28:58.778+02:00  INFO 92520 --- [library-backend] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-03-31T22:28:58.778+02:00  INFO 92520 --- [library-backend] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.18]
+2026-03-31T22:28:58.822+02:00  INFO 92520 --- [library-backend] [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1051 ms
+2026-03-31T22:28:58.937+02:00  INFO 92520 --- [library-backend] [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-03-31T22:28:58.991+02:00  INFO 92520 --- [library-backend] [           main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.4.Final
+2026-03-31T22:28:59.339+02:00  INFO 92520 --- [library-backend] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-31T22:28:59.365+02:00  INFO 92520 --- [library-backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-03-31T22:28:59.523+02:00  INFO 92520 --- [library-backend] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@53a09566
+2026-03-31T22:28:59.524+02:00  INFO 92520 --- [library-backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-03-31T22:28:59.566+02:00  WARN 92520 --- [library-backend] [           main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-31T22:28:59.580+02:00  INFO 92520 --- [library-backend] [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/library_db?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.45
+	Default catalog/schema: library_db/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-31T22:29:00.393+02:00  INFO 92520 --- [library-backend] [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: create table books (id bigint not null auto_increment, author varchar(255) not null, available_copies integer not null, category varchar(100), description varchar(2000), isbn varchar(255), language varchar(50), published_year integer, title varchar(255) not null, total_copies integer not null, primary key (id)) engine=InnoDB
+Hibernate: create table borrow_records (id bigint not null auto_increment, actual_return_date date, borrow_date date not null, expected_return_date date not null, status enum ('BORROWED','OVERDUE','RETURNED') not null, book_id bigint not null, user_card_id bigint not null, primary key (id)) engine=InnoDB
+Hibernate: create table operation_history (id bigint not null auto_increment, action varchar(255) not null, details varchar(1000), timestamp datetime(6) not null, user_id bigint not null, primary key (id)) engine=InnoDB
+Hibernate: create table user_cards (id bigint not null auto_increment, card_number varchar(255) not null, issue_date date not null, user_id bigint not null, primary key (id)) engine=InnoDB
+Hibernate: create table users (id bigint not null auto_increment, email varchar(255) not null, enabled BOOLEAN DEFAULT TRUE not null, first_name varchar(255), last_name varchar(255), password varchar(255) not null, role enum ('ADMIN','LIBRARIAN','READER') not null, primary key (id)) engine=InnoDB
+Hibernate: alter table books drop index UKkibbepcitr0a3cpk3rfr7nihn
+Hibernate: alter table books add constraint UKkibbepcitr0a3cpk3rfr7nihn unique (isbn)
+Hibernate: alter table user_cards drop index UKbc5jbv5nienoegqqyduhdc7ba
+Hibernate: alter table user_cards add constraint UKbc5jbv5nienoegqqyduhdc7ba unique (card_number)
+Hibernate: alter table user_cards drop index UK907svt4t7o9jhs3ur6no4e3xd
+Hibernate: alter table user_cards add constraint UK907svt4t7o9jhs3ur6no4e3xd unique (user_id)
+Hibernate: alter table users drop index UK6dotkott2kjsp8vw4d0m25fb7
+Hibernate: alter table users add constraint UK6dotkott2kjsp8vw4d0m25fb7 unique (email)
+Hibernate: alter table borrow_records add constraint FK9ep13xg9kn8vo3w0ntvd08tco foreign key (book_id) references books (id)
+Hibernate: alter table borrow_records add constraint FKt7qh70j2n02laj3u82c3hu56k foreign key (user_card_id) references user_cards (id)
+Hibernate: alter table operation_history add constraint FK8l8s35o1br9q0qcq8asxgs8ul foreign key (user_id) references users (id)
+Hibernate: alter table user_cards add constraint FK55ime3genywh3rg5yu62hmfvy foreign key (user_id) references users (id)
+2026-03-31T22:29:01.492+02:00  INFO 92520 --- [library-backend] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-31T22:29:01.558+02:00  INFO 92520 --- [library-backend] [           main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-31T22:29:02.562+02:00  INFO 92520 --- [library-backend] [           main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-03-31T22:29:02.563+02:00  WARN 92520 --- [library-backend] [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-03-31T22:29:02.634+02:00  WARN 92520 --- [library-backend] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-31T22:29:03.098+02:00  INFO 92520 --- [library-backend] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-03-31T22:29:03.099+02:00  INFO 92520 --- [library-backend] [           main] com.library.BackendApplication           : Started BackendApplication in 5.678 seconds (process running for 5.975)
+Hibernate: select count(*) from users u1_0
+Hibernate: insert into users (email,enabled,first_name,last_name,password,role) values (?,?,?,?,?,?)
+Hibernate: insert into users (email,enabled,first_name,last_name,password,role) values (?,?,?,?,?,?)
+Hibernate: insert into users (email,enabled,first_name,last_name,password,role) values (?,?,?,?,?,?)
+Hibernate: insert into users (email,enabled,first_name,last_name,password,role) values (?,?,?,?,?,?)
+Hibernate: insert into users (email,enabled,first_name,last_name,password,role) values (?,?,?,?,?,?)
+Hibernate: insert into user_cards (card_number,issue_date,user_id) values (?,?,?)
+Hibernate: insert into user_cards (card_number,issue_date,user_id) values (?,?,?)
+Hibernate: insert into user_cards (card_number,issue_date,user_id) values (?,?,?)
+Hibernate: insert into user_cards (card_number,issue_date,user_id) values (?,?,?)
+Hibernate: insert into books (author,available_copies,category,description,isbn,language,published_year,title,total_copies) values (?,?,?,?,?,?,?,?,?)
+Hibernate: insert into books (author,available_copies,category,description,isbn,language,published_year,title,total_copies) values (?,?,?,?,?,?,?,?,?)
+Hibernate: insert into books (author,available_copies,category,description,isbn,language,published_year,title,total_copies) values (?,?,?,?,?,?,?,?,?)
+Hibernate: insert into books (author,available_copies,category,description,isbn,language,published_year,title,total_copies) values (?,?,?,?,?,?,?,?,?)
+Hibernate: insert into books (author,available_copies,category,description,isbn,language,published_year,title,total_copies) values (?,?,?,?,?,?,?,?,?)
+Hibernate: insert into books (author,available_copies,category,description,isbn,language,published_year,title,total_copies) values (?,?,?,?,?,?,?,?,?)
+Hibernate: insert into books (author,available_copies,category,description,isbn,language,published_year,title,total_copies) values (?,?,?,?,?,?,?,?,?)
+Hibernate: insert into books (author,available_copies,category,description,isbn,language,published_year,title,total_copies) values (?,?,?,?,?,?,?,?,?)
+Hibernate: insert into books (author,available_copies,category,description,isbn,language,published_year,title,total_copies) values (?,?,?,?,?,?,?,?,?)
+Hibernate: insert into books (author,available_copies,category,description,isbn,language,published_year,title,total_copies) values (?,?,?,?,?,?,?,?,?)
+Hibernate: insert into books (author,available_copies,category,description,isbn,language,published_year,title,total_copies) values (?,?,?,?,?,?,?,?,?)
+Hibernate: insert into books (author,available_copies,category,description,isbn,language,published_year,title,total_copies) values (?,?,?,?,?,?,?,?,?)
+Hibernate: insert into borrow_records (actual_return_date,book_id,borrow_date,expected_return_date,status,user_card_id) values (?,?,?,?,?,?)
+Hibernate: insert into borrow_records (actual_return_date,book_id,borrow_date,expected_return_date,status,user_card_id) values (?,?,?,?,?,?)
+Hibernate: insert into borrow_records (actual_return_date,book_id,borrow_date,expected_return_date,status,user_card_id) values (?,?,?,?,?,?)
+Hibernate: insert into borrow_records (actual_return_date,book_id,borrow_date,expected_return_date,status,user_card_id) values (?,?,?,?,?,?)
+Hibernate: insert into borrow_records (actual_return_date,book_id,borrow_date,expected_return_date,status,user_card_id) values (?,?,?,?,?,?)
+Hibernate: select b1_0.id,b1_0.author,b1_0.available_copies,b1_0.category,b1_0.description,b1_0.isbn,b1_0.language,b1_0.published_year,b1_0.title,b1_0.total_copies from books b1_0 where b1_0.id=?
+Hibernate: select b1_0.id,b1_0.author,b1_0.available_copies,b1_0.category,b1_0.description,b1_0.isbn,b1_0.language,b1_0.published_year,b1_0.title,b1_0.total_copies from books b1_0 where b1_0.id=?
+Hibernate: select b1_0.id,b1_0.author,b1_0.available_copies,b1_0.category,b1_0.description,b1_0.isbn,b1_0.language,b1_0.published_year,b1_0.title,b1_0.total_copies from books b1_0 where b1_0.id=?
+Hibernate: select b1_0.id,b1_0.author,b1_0.available_copies,b1_0.category,b1_0.description,b1_0.isbn,b1_0.language,b1_0.published_year,b1_0.title,b1_0.total_copies from books b1_0 where b1_0.id=?
+Hibernate: update books set author=?,available_copies=?,category=?,description=?,isbn=?,language=?,published_year=?,title=?,total_copies=? where id=?
+Hibernate: update books set author=?,available_copies=?,category=?,description=?,isbn=?,language=?,published_year=?,title=?,total_copies=? where id=?
+Hibernate: update books set author=?,available_copies=?,category=?,description=?,isbn=?,language=?,published_year=?,title=?,total_copies=? where id=?
+Hibernate: update books set author=?,available_copies=?,category=?,description=?,isbn=?,language=?,published_year=?,title=?,total_copies=? where id=?
+=================================================
+  Test data initialized successfully!
+  admin@library.com      / admin123     (ADMIN)
+  librarian@library.com  / librarian123 (LIBRARIAN)
+  ivan@example.com       / reader123    (READER)
+  olena@example.com      / reader123    (READER)
+  dmytro@example.com     / reader123    (READER)
+=================================================
+2026-03-31T22:33:03.569+02:00  INFO 92520 --- [library-backend] [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-31T22:33:03.569+02:00  INFO 92520 --- [library-backend] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-03-31T22:33:03.570+02:00  INFO 92520 --- [library-backend] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-03-31T22:33:03.581+02:00 ERROR 92520 --- [library-backend] [nio-8080-exec-1] c.l.security.jwt.AuthEntryPointJwt       : Unauthorized error: Full authentication is required to access this resource
+2026-03-31T22:33:03.583+02:00 ERROR 92520 --- [library-backend] [nio-8080-exec-1] c.l.security.jwt.AuthEntryPointJwt       : Unauthorized error: Full authentication is required to access this resource

@@ -1,8 +1,16 @@
 package com.library.payload.request;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+
 public class BorrowRequest {
+    @NotNull(message = "Book ID is required")
     private Long bookId;
+
+    @NotNull(message = "User card ID is required")
     private Long userCardId;
+
+    @Min(value = 1, message = "Days to borrow must be at least 1")
     private int daysToBorrow;
 
     public Long getBookId() {

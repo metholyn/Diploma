@@ -1,7 +1,8 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect } from "react";
 import { fetchApi } from "@/lib/api";
+import Toast from "@/components/Toast";
 
 interface BorrowRecord {
     id: number;
@@ -14,6 +15,7 @@ export default function AdminBorrowsPage() {
     const [activeBorrows, setActiveBorrows] = useState<BorrowRecord[]>([]);
     const [loading, setLoading] = useState(true);
     const [issueForm, setIssueForm] = useState({ bookId: "", userCardId: "", daysToBorrow: 14 });
+    const [toast, setToast] = useState<{ message: string; type: "success" | "error" } | null>(null);
 
     const loadBorrows = async () => {
         try {
@@ -38,22 +40,30 @@ export default function AdminBorrowsPage() {
                 body: JSON.stringify({
                     bookId: parseInt(issueForm.bookId),
                     userCardId: parseInt(issueForm.userCardId),
-                    daysToBorrow: issueForm.daysToBorrow
-                })
+                    daysToBorrow: issueForm.daysToBorrow,
+                }),
             });
             setIssueForm({ bookId: "", userCardId: "", daysToBorrow: 14 });
+            setToast({ message: "Book issued successfully!", type: "success" });
             loadBorrows();
         } catch (error: unknown) {
-            alert("Error issuing book: " + (error instanceof Error ? error.message : String(error)));
+            setToast({
+                message: "Error issuing book: " + (error instanceof Error ? error.message : String(error)),
+                type: "error",
+            });
         }
     };
 
     const handleReturn = async (recordId: number) => {
         try {
             await fetchApi(`/borrow/return/${recordId}`, { method: "POST" });
+            setToast({ message: "Book returned successfully!", type: "success" });
             loadBorrows();
         } catch (error: unknown) {
-            alert("Error returning book: " + (error instanceof Error ? error.message : String(error)));
+            setToast({
+                message: "Error returning book: " + (error instanceof Error ? error.message : String(error)),
+                type: "error",
+            });
         }
     };
 
@@ -61,6 +71,10 @@ export default function AdminBorrowsPage() {
 
     return (
         <div>
+            {toast && (
+                <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />
+            )}
+
             <h1 className="text-2xl font-bold text-gray-800 mb-6">Borrowings</h1>
 
             <form onSubmit={handleIssue} className="bg-gray-50 p-6 rounded-lg mb-8 border border-gray-200">
@@ -69,19 +83,27 @@ export default function AdminBorrowsPage() {
                     <div className="flex-1">
                         <label className="block text-sm text-gray-600 mb-1">Book ID</label>
                         <input type="number" required className="border p-2 rounded w-full"
-                            value={issueForm.bookId} onChange={e => setIssueForm({ ...issueForm, bookId: e.target.value })} />
+                            value={issueForm.bookId}
+                            onChange={(e) => setIssueForm({ ...issueForm, bookId: e.target.value })} />
                     </div>
                     <div className="flex-1">
                         <label className="block text-sm text-gray-600 mb-1">User Card ID</label>
                         <input type="number" required className="border p-2 rounded w-full"
-                            value={issueForm.userCardId} onChange={e => setIssueForm({ ...issueForm, userCardId: e.target.value })} />
+                            value={issueForm.userCardId}
+                            onChange={(e) => setIssueForm({ ...issueForm, userCardId: e.target.value })} />
                     </div>
                     <div className="flex-1">
                         <label className="block text-sm text-gray-600 mb-1">Days</label>
                         <input type="number" required className="border p-2 rounded w-full"
-                            value={issueForm.daysToBorrow} onChange={e => setIssueForm({ ...issueForm, daysToBorrow: parseInt(e.target.value) })} />
+                            value={issueForm.daysToBorrow}
+                            onChange={(e) =>
+                                setIssueForm({ ...issueForm, daysToBorrow: parseInt(e.target.value) })
+                            } />
                     </div>
-                    <button type="submit" className="bg-purple-600 text-white px-6 py-2 rounded hover:bg-purple-700 h-10">Issue</button>
+                    <button type="submit"
+                        className="bg-purple-600 text-white px-6 py-2 rounded hover:bg-purple-700 h-10">
+                        Issue
+                    </button>
                 </div>
             </form>
 
@@ -98,21 +120,27 @@ export default function AdminBorrowsPage() {
                         </tr>
                     </thead>
                     <tbody>
-                        {activeBorrows.map(b => (
+                        {activeBorrows.map((b) => (
                             <tr key={b.id} className="border-b hover:bg-gray-50">
                                 <td className="p-4 text-sm">{b.id}</td>
                                 <td className="p-4 text-sm">{b.book?.title}</td>
                                 <td className="p-4 text-sm">{b.userCard?.cardNumber}</td>
                                 <td className="p-4 text-sm">{b.expectedReturnDate}</td>
                                 <td className="p-4 text-sm">
-                                    <button onClick={() => handleReturn(b.id)} className="text-green-600 border border-green-600 px-3 py-1 rounded hover:bg-green-50 transition">
+                                    <button
+                                        onClick={() => handleReturn(b.id)}
+                                        className="text-green-600 border border-green-600 px-3 py-1 rounded hover:bg-green-50 transition">
                                         Return Item
                                     </button>
                                 </td>
                             </tr>
                         ))}
                         {activeBorrows.length === 0 && (
-                            <tr><td colSpan={5} className="p-4 text-center text-gray-500">No active borrowings found.</td></tr>
+                            <tr>
+                                <td colSpan={5} className="p-4 text-center text-gray-500">
+                                    No active borrowings found.
+                                </td>
+                            </tr>
                         )}
                     </tbody>
                 </table>

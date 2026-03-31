@@ -27,6 +27,15 @@ public class Book {
     @Column(nullable = false)
     private Integer availableCopies;
 
+    @Column(length = 100)
+    private String category;
+
+    @Column(length = 2000)
+    private String description;
+
+    @Column(length = 50)
+    private String language;
+
     // Constructors
     public Book() {}
 
@@ -37,6 +46,15 @@ public class Book {
         this.publishedYear = publishedYear;
         this.totalCopies = totalCopies;
         this.availableCopies = availableCopies;
+    }
+
+    public Book(String title, String author, String isbn, Integer publishedYear,
+                Integer totalCopies, Integer availableCopies,
+                String category, String description, String language) {
+        this(title, author, isbn, publishedYear, totalCopies, availableCopies);
+        this.category = category;
+        this.description = description;
+        this.language = language;
     }
 
     // Getters and Setters
@@ -51,6 +69,15 @@ public class Book {
 
     public String getIsbn() { return isbn; }
     public void setIsbn(String isbn) { this.isbn = isbn; }
+
+    public String getCategory() { return category; }
+    public void setCategory(String category) { this.category = category; }
+
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
+
+    public String getLanguage() { return language; }
+    public void setLanguage(String language) { this.language = language; }
 
     public Integer getPublishedYear() { return publishedYear; }
     public void setPublishedYear(Integer publishedYear) { this.publishedYear = publishedYear; }

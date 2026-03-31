@@ -1,76 +1,57 @@
 package com.library.controller;
 
 import com.library.entity.Book;
-import com.library.repository.BookRepository;
+import com.library.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/books")
 public class BookController {
 
     @Autowired
-    BookRepository bookRepository;
+    private BookService bookService;
 
     @GetMapping
-    public List<Book> getAllBooks(@RequestParam(required = false) String title) {
-        if (title != null && !title.isEmpty()) {
-            return bookRepository.findByTitleContainingIgnoreCase(title);
-        }
-        return bookRepository.findAll();
+    public ResponseEntity<Page<Book>> getAllBooks(
+            @RequestParam(required = false) String query,
+            @RequestParam(required = false) String category,
+            @RequestParam(required = false) Boolean available,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "12") int size,
+            @RequestParam(defaultValue = "title") String sort) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sort));
+        return ResponseEntity.ok(bookService.getBooks(query, category, available, pageable));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Book> getBookById(@PathVariable("id") long id) {
-        Optional<Book> bookData = bookRepository.findById(id);
-        return bookData.map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+    public ResponseEntity<Book> getBookById(@PathVariable("id") Long id) {
+        return ResponseEntity.ok(bookService.getBookById(id));
     }
 
     @PostMapping
     @PreAuthorize("hasRole('ADMIN') or hasRole('LIBRARIAN')")
-    public Book createBook(@RequestBody Book book) {
-        return bookRepository.save(new Book(
-                book.getTitle(),
-                book.getAuthor(),
-                book.getIsbn(),
-                book.getPublishedYear(),
-                book.getTotalCopies(),
-                book.getAvailableCopies()));
+    public ResponseEntity<Book> createBook(@RequestBody Book book) {
+        return ResponseEntity.ok(bookService.createBook(book));
     }
 
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN') or hasRole('LIBRARIAN')")
-    public ResponseEntity<Book> updateBook(@PathVariable("id") long id, @RequestBody Book bookDetails) {
-        Optional<Book> bookData = bookRepository.findById(id);
-
-        if (bookData.isPresent()) {
-            Book _book = bookData.get();
-            _book.setTitle(bookDetails.getTitle());
-            _book.setAuthor(bookDetails.getAuthor());
-            _book.setIsbn(bookDetails.getIsbn());
-            _book.setPublishedYear(bookDetails.getPublishedYear());
-            _book.setTotalCopies(bookDetails.getTotalCopies());
-            _book.setAvailableCopies(bookDetails.getAvailableCopies());
-            return ResponseEntity.ok(bookRepository.save(_book));
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<Book> updateBook(@PathVariable("id") Long id, @RequestBody Book bookDetails) {
+        return ResponseEntity.ok(bookService.updateBook(id, bookDetails));
     }
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN') or hasRole('LIBRARIAN')")
-    public ResponseEntity<Void> deleteBook(@PathVariable("id") long id) {
-        try {
-            bookRepository.deleteById(id);
-            return ResponseEntity.noContent().build();
-        } catch (Exception e) {
-            return ResponseEntity.internalServerError().build();
-        }
+    public ResponseEntity<Void> deleteBook(@PathVariable("id") Long id) {
+        bookService.deleteBook(id);
+        return ResponseEntity.noContent().build();
     }
 }
+
