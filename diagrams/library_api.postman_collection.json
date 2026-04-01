@@ -1,0 +1,286 @@
+{
+  "info": {
+    "name": "Library API — Дипломна робота",
+    "_postman_id": "lib-api-diploma-2026",
+    "description": "REST API тестування бібліотечного веб-застосунку\nПереверзов Марк Андрійович, 6.1212-пзс\n\nЯк користуватись:\n1. Import → цей файл → колекція з'явиться у Postman\n2. Спочатку виконайте '1. Логін (отримати токен)'\n3. Токен збережеться автоматично в змінну {{token}}\n4. Всі наступні запити використовують {{token}} у заголовку",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "🔐 Автентифікація",
+      "item": [
+        {
+          "name": "1. Логін (отримати токен)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var json = pm.response.json();",
+                  "if (json.accessToken) {",
+                  "    pm.collectionVariables.set('token', json.accessToken);",
+                  "    pm.test('✅ Токен отримано', () => pm.expect(json.accessToken).to.be.a('string'));",
+                  "}",
+                  "pm.test('✅ Статус 200 OK', () => pm.response.to.have.status(200));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@library.com\",\n  \"password\": \"admin123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/signin",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            },
+            "description": "Отримати JWT-токен для адміністратора.\nТокен автоматично зберігається в змінну {{token}}."
+          }
+        },
+        {
+          "name": "2. Реєстрація нового користувача",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test_user@library.com\",\n  \"password\": \"password123\",\n  \"firstName\": \"Тест\",\n  \"lastName\": \"Користувач\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/signup",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "register"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "📚 Книги",
+      "item": [
+        {
+          "name": "3. Отримати всі книги (GET /api/books)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('✅ Статус 200 OK', () => pm.response.to.have.status(200));",
+                  "pm.test('✅ Відповідь — масив', () => {",
+                  "    var json = pm.response.json();",
+                  "    pm.expect(json).to.be.an('array');",
+                  "    pm.expect(json.length).to.be.above(0);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/books",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "books"]
+            },
+            "description": "Список усіх книг каталогу. Потрібен JWT-токен у заголовку Authorization."
+          }
+        },
+        {
+          "name": "4. Отримати книгу за ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/books/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "books", "1"]
+            }
+          }
+        },
+        {
+          "name": "5. Додати нову книгу (ADMIN)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Чистий код\",\n  \"author\": \"Роберт Мартін\",\n  \"isbn\": \"978-0132350884\",\n  \"publishedYear\": 2008,\n  \"totalCopies\": 5,\n  \"availableCopies\": 5\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/books",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "books"]
+            }
+          }
+        },
+        {
+          "name": "6. Оновити книгу (ADMIN)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Чистий код (оновлено)\",\n  \"author\": \"Роберт Мартін\",\n  \"isbn\": \"978-0132350884\",\n  \"publishedYear\": 2008,\n  \"totalCopies\": 10,\n  \"availableCopies\": 9\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/books/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "books", "1"]
+            }
+          }
+        },
+        {
+          "name": "7. Видалити книгу (ADMIN)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/books/99",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "books", "99"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "📋 Видачі книг",
+      "item": [
+        {
+          "name": "8. Всі активні видачі (ADMIN/LIBRARIAN)",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/borrows",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "borrows"]
+            }
+          }
+        },
+        {
+          "name": "9. Видати книгу читачу",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": 2,\n  \"bookId\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/borrows",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "borrows"]
+            }
+          }
+        },
+        {
+          "name": "10. Повернути книгу",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/borrows/1/return",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "borrows", "1", "return"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "👥 Користувачі",
+      "item": [
+        {
+          "name": "11. Всі користувачі (ADMIN)",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/users",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "users"]
+            }
+          }
+        },
+        {
+          "name": "12. Профіль поточного користувача",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/users/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "users", "me"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "📜 Журнал операцій",
+      "item": [
+        {
+          "name": "13. Журнал операцій (ADMIN)",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/history",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "history"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
